@@ -1,4 +1,5 @@
 #Setting up libraries Numpy, Pandas, and Pathlib
+Python
 import numpy as np
 import pandas as pd
 from pathlib import Path
@@ -30,9 +31,8 @@ df2=df
 df = pd.read_csv(budget_filepath)
 df2['Profit/Losses']=df2['Profit/Losses'].shift(1)
 df2 = df2.fillna(0)
-df3 = df2
-df3['Profit/Losses']=df["Profit/Losses"]-df2["Profit/Losses"]
-AveragePL=df3['Profit/Losses'].sum()/(count_row-1)
+df2['Profit/Losses']=df["Profit/Losses"]-df2["Profit/Losses"]
+AveragePL=df2.iloc[1:86,1].sum()/(count_row-1)
 print(f"Average  Change: $",AveragePL.round(2))
 
 
@@ -41,8 +41,10 @@ The greatest increase in profits (date and amount) over the entire period. Dropp
 the average change in p/l data. Specified which column I want the max value in data frame 3. Utilized idxmax function to pull entire row data of the max value data. 
 """
 Greatest_Profit = df3.loc[df3['Profit/Losses'].idxmax(())]
-print(f"Greatest Increase in Profits: ",Greatest_Profit)
+int = Greatest_Profit
+print(f"Greatest Increase in Profits: $",Greatest_Profit)
 
 #The greatest decrease in losses (date and amount) over the entire period.
 Worst_Profit = df3.loc[df3['Profit/Losses'].idxmin(())]
-print(f"Greatest Decrease in Profits: ",Worst_Profit)
+int = Worst_Profit
+print(f"Greatest Decrease in Profits: $",Worst_Profit)
